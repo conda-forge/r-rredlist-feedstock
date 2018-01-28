@@ -2,7 +2,7 @@
 
 package:
   name: r-rredlist
-  version: {{ version|replace("-", "_") }}
+  version: {{ version }}
 
 source:
   fn: rredlist_{{ version }}.tar.gz
