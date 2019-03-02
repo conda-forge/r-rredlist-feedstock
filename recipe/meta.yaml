@@ -44,6 +44,7 @@ about:
     Red List is a global list of threatened and endangered species. Functions cover
     all of the Red List ''API'' routes. An ''API'' key is required.'
   license_family: MIT
+  license_file: LICENSE
 
 extra:
   recipe-maintainers:
