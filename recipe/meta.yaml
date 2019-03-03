@@ -1,26 +1,29 @@
-{% set version = '0.4.0' %}
+{% set version = '0.5.0' %}
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-rredlist
-  version: {{ version }}
+  version: {{ version|replace("-", "_") }}
 
 source:
-  fn: rredlist_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/rredlist_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/rredlist/rredlist_{{ version }}.tar.gz
-  sha256: 9e59d3c5830322ed85762bbb3273b59befe59c3feabfe7d2f32de96fc4525048
+    - {{ cran_mirror }}/src/contrib/rredlist_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/rredlist/rredlist_{{ version }}.tar.gz
+  sha256: 404db668f94aea7fe8c4da75085ea82b0bc9994f023ef4a52f4d75cf198db889
 
 build:
+  merge_build_host: True  # [win]
+  number: 0
   noarch: generic
-  number: 1001
-  script: R CMD INSTALL --build .
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
     - r-crul >=0.3.8
     - r-jsonlite >=1.1
@@ -31,16 +34,39 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('rredlist')"  # [not win]
+    - $R -e "library('rredlist')"           # [not win]
     - "\"%R%\" -e \"library('rredlist')\""  # [win]
 
 about:
-  home: https://cran.r-project.org/package=rredlist
+  home: https://github.com/ropensci/rredlist
   license: MIT
+  summary: '''IUCN'' Red List (<http://apiv3.iucnredlist.org/api/v3/docs>) client. The ''IUCN''
+    Red List is a global list of threatened and endangered species. Functions cover
+    all of the Red List ''API'' routes. An ''API'' key is required.'
+  license_family: MIT
   license_file: LICENSE
-  summary: 'IUCN Red List'
 
 extra:
   recipe-maintainers:
-    - dpryan79
+    - conda-forge/r
     - ocefpaf
+
+# Package: rredlist
+# Type: Package
+# Title: 'IUCN' Red List Client
+# Description: 'IUCN' Red List (<http://apiv3.iucnredlist.org/api/v3/docs>) client. The 'IUCN' Red List is a global list of threatened and endangered species. Functions cover all of the Red List 'API' routes. An 'API' key is required.
+# Version: 0.5.0
+# Authors@R:  c(person(given = "Scott", family = "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"), person(given = "rOpenSci", role = "fnd", comment = "https://ropensci.org/"), person(given = "Maelle", family = "Salmon", role = "ctb", email = "maelle.salmon@yahoo.se"))
+# License: MIT + file LICENSE
+# URL: https://github.com/ropensci/rredlist
+# BugReports: https://github.com/ropensci/rredlist/issues
+# Imports: crul (>= 0.3.8), jsonlite (>= 1.1)
+# Suggests: roxygen2 (>= 6.0.1), testthat, webmockr (>= 0.2.6), vcr (>= 0.1.0)
+# Encoding: UTF-8
+# RoxygenNote: 6.0.1
+# NeedsCompilation: no
+# Packaged: 2018-07-19 19:46:36 UTC; sckott
+# Author: Scott Chamberlain [aut, cre], rOpenSci [fnd] (https://ropensci.org/), Maelle Salmon [ctb]
+# Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2018-07-19 20:10:03 UTC
