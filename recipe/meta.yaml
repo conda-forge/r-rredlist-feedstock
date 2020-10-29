@@ -1,4 +1,4 @@
-{% set version = "0.6.0" %}
+{% set version = "0.7.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rredlist_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rredlist/rredlist_{{ version }}.tar.gz
-  sha256: bed33680f4e36f0f357d5785b631ae91232c8593a7517f1c0a4199d4e1e28332
+  sha256: d2e66b655c43565a4cc0984dc3fcc9732652cb9677baaa9bb2b82e9f9d65e7f0
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
@@ -40,9 +40,7 @@ test:
 about:
   home: https://github.com/ropensci/rredlist
   license: MIT
-  summary: '''IUCN'' Red List (<http://apiv3.iucnredlist.org/api/v3/docs>) client. The ''IUCN''
-    Red List is a global list of threatened and endangered species. Functions cover
-    all of the Red List ''API'' routes. An ''API'' key is required.'
+  summary: "'IUCN' Red List (<http://apiv3.iucnredlist.org/api/v3/docs>) client. The 'IUCN' Red List is a global list of threatened and endangered species. Functions cover all of the Red List 'API' routes. An 'API' key is required."
   license_family: MIT
   license_file: LICENSE
 

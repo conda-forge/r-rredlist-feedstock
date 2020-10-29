@@ -5,11 +5,9 @@ Home: https://github.com/ropensci/rredlist
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-rredlist-feedstock/blob/master/LICENSE.txt)
 
 Summary: 'IUCN' Red List (<http://apiv3.iucnredlist.org/api/v3/docs>) client. The 'IUCN' Red List is a global list of threatened and endangered species. Functions cover all of the Red List 'API' routes. An 'API' key is required.
-
-
 
 Current build status
 ====================
