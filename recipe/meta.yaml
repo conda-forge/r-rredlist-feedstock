@@ -1,4 +1,4 @@
-{% set version = "0.7.1" %}
+{% set version = "1.0.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rredlist_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rredlist/rredlist_{{ version }}.tar.gz
-  sha256: 92a10c37a211dc19b41b93f9ceb13d7ce1c3d3a7290cbba4c1688d944353ae85
+  sha256: e576e2876eae887fe0a917e2baab7663b3b89388fcc118788b8b6ce2b28b0da1
 
 build:
-  number: 2
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
@@ -21,14 +21,23 @@ build:
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
+    - r-cli
     - r-crul >=0.3.8
+    - r-curl
     - r-jsonlite >=1.1
+    - r-lifecycle
+    - r-rlang
   run:
     - r-base
+    - r-cli
     - r-crul >=0.3.8
+    - r-curl
     - r-jsonlite >=1.1
+    - r-lifecycle
+    - r-rlang
 
 test:
   commands:
@@ -40,7 +49,9 @@ about:
   license: MIT
   summary: "'IUCN' Red List (<http://apiv3.iucnredlist.org/api/v3/docs>) client. The 'IUCN' Red List is a global list of threatened and endangered species. Functions cover all of the Red List 'API' routes. An 'API' key is required."
   license_family: MIT
-  license_file: LICENSE
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE
 
 extra:
   recipe-maintainers:
