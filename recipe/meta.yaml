@@ -1,4 +1,4 @@
-{% set version = "1.1.0" %}
+{% set version = "1.1.1" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/rredlist_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/rredlist/rredlist_{{ version }}.tar.gz
-  sha256: ddb8b379be01be3ae10332d124676619991e1b28b237124b91257395a58ff04d
+  sha256: 1c91521c1c98996f8d6987930eb1291d9c7a131a6def9b4bac1469f1343645bf
 
 build:
   number: 0
